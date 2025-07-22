@@ -16,7 +16,7 @@ public class ProductService {
     }
 
     public List<ProductResponse> findAll() {
-        return repository.findAll().stream()
+        return repository.findAllByOrderByIdDesc().stream()
                 .map(ProductMapper::toResponse)
                 .toList();
     }
