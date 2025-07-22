@@ -1,4 +1,4 @@
-package com.pdf.demo;
+package com.pdfp.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
