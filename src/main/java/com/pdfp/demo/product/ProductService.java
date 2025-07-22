@@ -2,6 +2,7 @@ package com.pdfp.demo.product;
 
 import com.pdfp.demo.product.dto.ProductRequest;
 import com.pdfp.demo.product.dto.ProductResponse;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ProductService {
     public ProductResponse findById(Long id) {
         return repository.findById(id)
                 .map(ProductMapper::toResponse)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado"));
     }
 
     public ProductResponse create(ProductRequest request) {
@@ -33,7 +34,7 @@ public class ProductService {
 
     public ProductResponse update(Long id, ProductRequest request) {
         Product existing = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado"));
         ProductMapper.update(existing, request);
         return ProductMapper.toResponse(repository.save(existing));
     }
